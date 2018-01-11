@@ -1,19 +1,19 @@
 angular.module("podreads")
 
-      .component('advertisers', {
+  .component('advertisers', {
 
-        controller: function($http) {
-          const vm = this
-          let advertisers;
+    controller: function($http) {
+      const vm = this
+      let advertisers;
 
-          vm.$onInit = function() {
-            $http.get('/advertisers')
-              .then(response => {
-                vm.advertisers = response.data
-              })
-          }
-        },
+      vm.$onInit = function() {
+        $http.get('/advertisers')
+          .then(response => {
+            vm.advertisers = response.data
+          })
+      }
+    },
 
-        templateUrl: "../templates/advertisers.html"
-        // template: "../templates/advertisers.html"
-      })
+    templateUrl: "../templates/advertisers.html"
+    // template: "../templates/advertisers.html"
+  })

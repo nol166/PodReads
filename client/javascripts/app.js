@@ -16,6 +16,10 @@
         url: '/advertisers',
         component: 'advertisers'
       })
+      .state('create',{
+        url: '/create',
+        component: 'create'
+      })
     }
 
 })()

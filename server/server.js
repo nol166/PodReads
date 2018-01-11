@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 const podcasts = require('./routes/podcasts');
 const advertisers = require('./routes/advertisers');
+const create = require('./routes/create');
 const path = require('path');
 
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 //routes
 app.use('/podcasts', podcasts);
 app.use('/advertisers', advertisers);
+app.use('/create', create);
 
 
 // forms handling
