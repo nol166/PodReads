@@ -4,6 +4,8 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       // Inserts seed entries
       return knex('podcasts').insert([{
+          email: 'kill@tony.com',
+          password: '1234',
           name: "Kill Tony",
           itunes_url: "https://itunes.apple.com/us/podcast/kill-tony/id1042361179?mt=2",
           website: "http://www.deathsquad.tv/category/kill-tony/",
@@ -17,6 +19,8 @@ exports.seed = function(knex, Promise) {
           tags: 'comedian Tony Hinchcliffe live comedy store Redban funny'
         },
         {
+          email: 'jre@jre.com',
+          password: '1234',
           name: 'The Joe Rogan Experience',
           itunes_url: 'https://itunes.apple.com/us/podcast/the-joe-rogan-experience/id360084272?mt=2',
           website: 'http://podcasts.joerogan.net/',
@@ -30,6 +34,8 @@ exports.seed = function(knex, Promise) {
           tags: 'joe rogan comedy'
         },
         {
+          email: 'star@talk.com',
+          password: '1234',
           name: 'Star Talk',
           itunes_url: "https://itunes.apple.com/us/podcast/startalk-radio/id325404506?mt=2",
           website: "https://www.startalkradio.net/",
@@ -43,6 +49,8 @@ exports.seed = function(knex, Promise) {
           tags: 'science space neil degreasse tyson'
         },
         {
+          email: 's@town.com',
+          password: '1234',
           name: 'S Town',
           itunes_url: "https://itunes.apple.com/us/podcast/s-town/id1212558767?mt=2",
           website: "https://stownpodcast.org/",
@@ -56,6 +64,8 @@ exports.seed = function(knex, Promise) {
           tags: 'personal Journal clock NPR this american life'
         },
         {
+          email: 'the@vergecast.com',
+          password: '1234',
           name: 'The Vergecast',
           itunes_url: "https://itunes.apple.com/us/podcast/the-vergecast/id430333725?mt=2",
           website: "https://art19.com/shows/vergecast",

@@ -2,6 +2,8 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('podcasts', (table) => {
     table.increments();
+    table.string('email').notNullable().defaultTo('');
+    table.string('password').notNullable().defaultTo('');
     table.string('name').notNullable().defaultTo('');
     table.string('itunes_url').notNullable().defaultTo('');
     table.string('website').defaultTo('');

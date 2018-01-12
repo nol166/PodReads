@@ -12,6 +12,7 @@ angular.module("podreads")
             vm.advertisers = response.data
           })
       }
+
     },
 
     templateUrl: "../templates/advertisers.html"

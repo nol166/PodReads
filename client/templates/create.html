@@ -79,64 +79,136 @@
 
     <label>Create account<input type="checkbox" ng-model="checked" ng-init="checked=false" /></label><br/>
     <span ng-if="checked" class="animate-if">
-      <!-- form to create -->
-      <div class="row">
-        <form class="col s12">
+      <!-- buttons -->
+      <a class="waves-effect waves-light btn-large" ng-init="showme=true" ng-click="showme=!showme">I have a podcast</a>
+      <a class="waves-effect waves-light btn-large" ng-click="showme=!showme">I am an advertiser</a>
+
+
+<!-- form for podcasters -->
+      <div class="row" ng-if="showme">
+        <form class="col s12" ng-submit="$ctrl.addPodcast()">
           <div class="row">
             <div class="input-field col s6">
-              <input id="name" type="text" class="validate" placeholder="Podcast name">
+              <input required ng-model="$ctrl.podcast.name" id="name" type="text" class="validate" placeholder="Podcast name">
               <!-- <label for="name">Podcast name</label> -->
             </div>
             <div class="input-field col s6">
-              <input id="itunes_url" type="text" class="validate" placeholder="iTunes URL">
+              <input required ng-model="$ctrl.podcast.itunes_url" id="itunes_url" type="text" class="validate" placeholder="iTunes URL">
               <!-- <label for="itunes_url">iTunes URL</label> -->
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <input id="website" type="text" class="validate" placeholder="Website">
+              <input required ng-model="$ctrl.podcast.website" id="website" type="text" class="validate" placeholder="Website">
               <!-- <label for="website">Website</label> -->
             </div>
             <div class="input-field col s6">
-              <input id="reader" type="text" class="validate" placeholder="Reader">
+              <input required ng-model="$ctrl.podcast.reader" id="reader" type="text" class="validate" placeholder="Reader">
               <!-- <label for="reader">Reader</label> -->
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <input id="demo" type="text" class="validate" placeholder="Demographic">
+              <input required ng-model="$ctrl.podcast.demo" id="demo" type="text" class="validate" placeholder="Demographic">
               <!-- <label for="demo">Demographic</label> -->
             </div>
             <div class="input-field col s6">
-              <input id="subject" type="text" class="validate" placeholder="Subject">
+              <input required ng-model="$ctrl.podcast.subject" id="subject" type="text" class="validate" placeholder="Subject">
               <!-- <label for="reader">Subject</label> -->
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <input id="contact" type="text" class="validate" placeholder="Contct number or email">
+              <input required ng-model="$ctrl.podcast.contact" id="contact" type="text" class="validate" placeholder="Contct number or email">
               <!-- <label for="demo">Contact number or email</label> -->
             </div>
             <div class="input-field col s6">
-              <input id="tags" type="text" class="validate" placeholder="Tags (seperate with commas)">
+              <input required ng-model="$ctrl.podcast.tags" id="tags" type="text" class="validate" placeholder="Tags (seperate with commas)">
               <!-- <label for="reader">Subject</label> -->
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="profile_image" type="text" class="validate" placeholder="Profile image URL">
+              <input required ng-model="$ctrl.podcast.profile_image" id="profile_image" type="text" class="validate" placeholder="Profile image URL">
               <!-- <label for="reader">profile image</label> -->
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="password" type="password" class="validate" placeholder="password">
+              <input required ng-model="$ctrl.podcast.password" id="password" type="password" class="validate" placeholder="password">
               <!-- <label for="email">Password</label> -->
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="email" type="email" class="validate" placeholder="email">
+              <input required ng-model="$ctrl.podcast.email" id="email" type="email" class="validate" placeholder="email">
+              <!-- <label for="email">Email</label> -->
+            </div>
+          </div>
+          <button class='col s12 btn btn-large waves-effect indigo light' type="submit" name="action">Submit</button>
+        </form>
+      </div>
+
+
+
+<!-- form for advertisers -->
+      <div class="row" ng-if="!showme">
+        <form class="col s12" ng-submit="$ctrl.addAdvertiser()">
+          <div class="row">
+            <div class="input-field col s6">
+              <input required ng-model="$ctrl.advertiser.name" id="name" type="text" class="validate" placeholder="Company name">
+              <!-- <label for="name">Company name</label> -->
+            </div>
+            <div class="input-field col s6">
+              <input required ng-model="$ctrl.advertiser.website" id="website" type="text" class="validate" placeholder="Website">
+              <!-- <label for="website">website</label> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input required ng-model="$ctrl.advertiser.location" id="location" type="text" class="validate" placeholder="Location">
+              <!-- <label for="location">location</label> -->
+            </div>
+            <div class="input-field col s6">
+              <input required ng-model="$ctrl.advertiser.summary" id="summary" type="text" class="validate" placeholder="Tell us about your company">
+              <!-- <label for="summary">summary</label> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input required ng-model="$ctrl.advertiser.demo" id="demo" type="text" class="validate" placeholder="Demographic">
+              <!-- <label for="demo">Demographic</label> -->
+            </div>
+            <div class="input-field col s6">
+              <input required ng-model="$ctrl.advertiser.subject" id="subject" type="text" class="validate" placeholder="Subject">
+              <!-- <label for="reader">Subject</label> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input required ng-model="$ctrl.advertiser.contact" id="contact" type="text" class="validate" placeholder="Contct number or email">
+              <!-- <label for="demo">Contact number or email</label> -->
+            </div>
+            <div class="input-field col s6">
+              <input id="tags" type="text" class="validate" placeholder="Tags (seperate with commas)">
+              <!-- <label for="reader">tags</label> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input required ng-model="$ctrl.advertiser.profile_image" id="profile_image" type="text" class="validate" placeholder="Profile image URL">
+              <!-- <label for="reader">profile image</label> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input required ng-model="$ctrl.advertiser.password" id="password" type="password" class="validate" placeholder="password">
+              <!-- <label for="email">Password</label> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input required ng-model="$ctrl.advertiser.email" id="email" type="email" class="validate" placeholder="email">
               <!-- <label for="email">Email</label> -->
             </div>
           </div>
@@ -151,5 +223,3 @@
   <div class="section"></div>
   <div class="section"></div>
 </main>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
