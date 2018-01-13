@@ -8,6 +8,9 @@
       </div>
       <div class="card-content">
         <h5>{{ podcast.name }}</h5>
+        <div class="chip" ng-repeat="tag in podcast.tagList">
+            {{ tag }}
+        </div>
         <br>
         {{ podcast.summary }}
         <br>
@@ -16,6 +19,9 @@
       </div>
       <div class="card-action">
         <a href="{{ podcast.itunes_url}}">iTunes</a>
+      </div>
+      <div class="card-action">
+        <a href="{{ podcast.website}}">website</a>
       </div>
 
     </div>

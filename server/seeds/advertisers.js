@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('advertisers').insert([{
           email: 'zip@recruiter.com',
-          password: '1234',
+          hashed_password: '1234',
           name: "Zip Recruiter",
           website: "https://www.ziprecruiter.com/",
           location: 'Santa Monica, CA',
@@ -17,7 +17,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           email: 'nature@box.com',
-          password: '1234',
+          hashed_password: '1234',
           name: "Nature Box",
           website: "https://naturebox.com/",
           location: "San Fancisco, CA",
@@ -29,7 +29,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           email: 'quip@quip.com',
-          password: '1234',
+          hashed_password: '1234',
           name: 'Quip',
           website: 'https://www.getquip.com/products',
           location: '45 Main St Brooklyn, NY 11201',
@@ -41,7 +41,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           email: 'dsc@dsc.com',
-          password: '1234',
+          hashed_password: '1234',
           name: 'Dollar Shave Club',
           website: 'https://www.dollarshaveclub.com',
           location: 'Venice, Los Angeles, CA',
@@ -53,7 +53,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           email: 'adult@swim.com',
-          password: '1234',
+          hashed_password: '1234',
           name: 'Adult Swim',
           website: 'https://www.adultswim.com',
           location: 'Atlanta, GA',
@@ -65,7 +65,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           email: 'stitch@fix.com',
-          password: '1234',
+          hashed_password: '1234',
           name: 'Stitch Fix',
           website: 'https://www.stitchfix.com/',
           location: 'San Francisco, CA',

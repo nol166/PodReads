@@ -11,7 +11,12 @@ angular.module("podreads")
           .then(response => {
             vm.create = response.data
           })
-      }
+          .catch(function(error) {
+          // , function(err) {
+          //   console.log(err);
+          // })
+      })
+    }
 
       vm.addAdvertiser = () => {
         $http.post('/advertisers', vm.advertiser)
@@ -21,7 +26,12 @@ angular.module("podreads")
             vm.advertiser.push(response.data)
             delete vm.advertiser
           })
-      }
+          .catch(function(error) {
+          // , function(err) {
+          //   console.log(err);
+          // })
+      })
+    }
 
       vm.addPodcast = () => {
         $http.post('/podcasts', vm.podcast)
@@ -30,8 +40,14 @@ angular.module("podreads")
             // response.data.comments = []
             vm.podcast.push(response.data)
             delete vm.podcast
+
           })
-      }
+          .catch(function(error) {
+          // , function(err) {
+          //   console.log(err);
+          // })
+      })
+    }
 
     },
 
