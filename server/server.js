@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcryptjs');
 const PORT = process.env.PORT || 8080;
 const app = express();
 const podcasts = require('./routes/podcasts');

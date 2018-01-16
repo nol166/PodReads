@@ -59,13 +59,15 @@ function params(req) {
     profile_image: req.body.profile_image,
     contact: req.body.contact,
     tags: req.body.tags,
+    password: req.body.password,
+    email: req.body.email,
   }
 }
 
 // function to validate the information coming in the body of a request
 function validate(req, res, next) {
   const errors = [];
-  ['name', 'website', 'location', 'summary', 'demo', 'profile_image', 'contact', 'tags'].forEach(field => {
+  ['name', 'website', 'location', 'summary', 'demo', 'profile_image', 'contact', 'tags', 'email', 'password'].forEach(field => {
     if (!req.body[field] || req.body[field].trim() === '') {
       errors.push({field: field, messages: ["cannot be blank"]})
     }
