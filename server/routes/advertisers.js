@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const knex = require ('../db/knex')
+const knex = require ('../db/knex');
+const bcrypt = require('bcryptjs');
+
 
 // route to get list of podcasts
 router.get('/', (req, res) => {
@@ -12,11 +14,21 @@ router.get('/', (req, res) => {
 
 // route to create a advertiser
 router.post('/', (req, res, next) => {
-  knex('advertisers')
-    .insert(params(req))
-    .returning('*')
-    .then(advertisers => res.json(advertisers[0]))
-    .catch(err => next(err))
+  // console.log("The request body is: ", req);
+  // console.log("REQUEST BODY IS: ", req.body);
+
+  // // add bcrypt thing to create password hash from req.body.password
+  bcrypt.genSalt(10, function(err, salt){
+    bcrypt.hash(req.body.password, salt, function(err, hash){
+      // store password in password db
+      knex('advertisers')
+      .insert(params(req, hash))
+      .returning('*')
+      .then(advertisers => res.json(advertisers[0]))
+      .catch(err => next(err))
+    })
+  })
+
 })
 
 // route to get a single podcast
@@ -49,23 +61,26 @@ router.delete('/:id', (req, res, next) => {
 
 
 
-function params(req) {
+function params(req, hash) {
   return {
     name: req.body.name,
-    website: req.body.website,
-    location: req.body.location,
+    itunes_url: req.body.itunes_url,
     summary: req.body.summary,
     demo: req.body.demo,
+    subject: req.body.subject,
     profile_image: req.body.profile_image,
     contact: req.body.contact,
     tags: req.body.tags,
+    email: req.body.email,
+    hashed_password: hash
   }
 }
+
 
 // function to validate the information coming in the body of a request
 function validate(req, res, next) {
   const errors = [];
-  ['name', 'website', 'location', 'summary', 'demo', 'profile_image', 'contact', 'tags'].forEach(field => {
+  ['name', 'website', 'location', 'summary', 'demo', 'profile_image', 'contact', 'tags', 'email', 'password'].forEach(field => {
     if (!req.body[field] || req.body[field].trim() === '') {
       errors.push({field: field, messages: ["cannot be blank"]})
     }

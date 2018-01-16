@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const knex = require ('../db/knex')
+const knex = require ('../db/knex');
+const bcrypt = require('bcryptjs');
 
 // route to get list of podcasts
 router.get('/', (req, res) => {
@@ -42,15 +43,23 @@ router.delete('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   // console.log("The request body is: ", req);
   // console.log("REQUEST BODY IS: ", req.body);
-  knex('podcasts')
-    .insert(params(req))
-    .returning('*')
-    .then(podcasts => res.json(podcasts[0]))
-    .catch(err => next(err))
+
+  // // add bcrypt thing to create password hash from req.body.password
+  bcrypt.genSalt(10, function(err, salt){
+    bcrypt.hash(req.body.password, salt, function(err, hash){
+      // store password in password db
+      knex('podcasts')
+      .insert(params(req, hash))
+      .returning('*')
+      .then(podcasts => res.json(podcasts[0]))
+      .catch(err => next(err))
+    })
+  })
+
 })
 
 // function to clean up the body of the request for easy slotting into the db
-function params(req) {
+function params(req, hash) {
   return {
     name: req.body.name,
     itunes_url: req.body.itunes_url,
@@ -59,14 +68,16 @@ function params(req) {
     subject: req.body.subject,
     profile_image: req.body.profile_image,
     contact: req.body.contact,
-    tags: req.body.tags
+    tags: req.body.tags,
+    email: req.body.email,
+    hashed_password: hash
   }
 }
 
 // function to validate the information coming in the body of a request
 function validate(req, res, next) {
   const errors = [];
-  ['name', 'itunes_url', 'summary', 'demo', 'subject', 'profile_image', 'contact', 'tags'].forEach(field => {
+  ['name', 'itunes_url', 'summary', 'demo', 'subject', 'profile_image', 'contact', 'tags', 'email', 'password'].forEach(field => {
     if (!req.body[field] || req.body[field].trim() === '') {
       errors.push({field: field, messages: ["cannot be blank"]})
     }

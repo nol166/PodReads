@@ -19,7 +19,7 @@ router.post('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
-// route to get a single podcast
+// route to get a single adver
 router.get('/:id', (req, res, next) => {
   knex('advertisers')
     .where({id: req.params.id})
@@ -59,8 +59,6 @@ function params(req) {
     profile_image: req.body.profile_image,
     contact: req.body.contact,
     tags: req.body.tags,
-    password: req.body.password,
-    email: req.body.email,
   }
 }
 
