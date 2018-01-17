@@ -2,7 +2,7 @@ angular.module("podreads")
 
   .component('create', {
 
-    controller: function($http) {
+    controller: function($http, $window, $state) {
       const vm = this
       let create;
 
@@ -18,6 +18,7 @@ angular.module("podreads")
       })
     }
 
+    // sign up for advertiser
       vm.addAdvertiser = () => {
         $http.post('/advertisers', vm.advertiser)
           .then(response => {
@@ -31,27 +32,45 @@ angular.module("podreads")
           //   console.log(err);
           // })
       })
-    }
+     }
 
+    // sign up for podcaster
       vm.addPodcast = () => {
+        console.log(vm.podcast);
         $http.post('/podcasts', vm.podcast)
           .then(response => {
             console.log("clicked podcast submit")
             // response.data.comments = []
-            vm.podcast.push(response.data)
-            delete vm.podcast
-
+            console.log(response);
+            $window.localStorage.setItem('token', response.data.token)
+            $state.go('podcasts')
           })
           .catch(function(error) {
           // , function(err) {
           //   console.log(err);
           // })
-      })
+          })
     }
 
-    },
+    // SIGN IN FOR PODCAST AND ADVERTISERS
+    vm.signIn = () => {
+      // replace test@test.com stuff with form data to log in
+      $http.post('/auth/login', {email: 'test@test.com', password: 'test', loginType: 'podcaster'})
+        .then(function(response){
+          console.log('USER DATA FROM BACKEND',response);
+          $window.localStorage.setItem('token', response.data.token)
+          if (vm.loginType === 'podcaster') {
+            $state.go('podcasts')
+          } else {
+            $state.go('advertiser')
+          }
+        }, function(err) {
+          console.log(err);
+        })
+    }
 
-
+  },
 
     templateUrl: "../templates/create.html"
+
   })

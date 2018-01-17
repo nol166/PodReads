@@ -2,9 +2,11 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const PORT = process.env.PORT || 8080;
 const app = express();
+const cookieSession = require('cookie-session');
 const podcasts = require('./routes/podcasts');
 const advertisers = require('./routes/advertisers');
 const create = require('./routes/create');
+const auth = require('./routes/auth');
 const path = require('path');
 
 
@@ -24,6 +26,7 @@ app.use(bodyParser.json());
 app.use('/podcasts', podcasts);
 app.use('/advertisers', advertisers);
 app.use('/create', create);
+app.use('/auth', auth)
 
 
 // forms handling

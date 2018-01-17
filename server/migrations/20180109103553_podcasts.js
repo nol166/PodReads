@@ -16,6 +16,7 @@ exports.up = function(knex, Promise) {
     table.string('contact').defaultTo('');
     table.timestamps(true, true);
     table.text('tags').defaultTo('');
+    table.string('loginType').defaultTo('');
   })
 };
 

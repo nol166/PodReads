@@ -4,7 +4,7 @@ const knex = require ('../db/knex');
 const bcrypt = require('bcryptjs');
 
 
-// route to get list of podcasts
+// route to get list of advertisers
 router.get('/', (req, res) => {
   knex('advertisers')
     .then((advertisers) => {
@@ -24,11 +24,16 @@ router.post('/', (req, res, next) => {
       knex('advertisers')
       .insert(params(req, hash))
       .returning('*')
-      .then(advertisers => res.json(advertisers[0]))
-      .catch(err => next(err))
-    })
+      .then(advertisers => {
+        let advertiser = advertisers[0];
+        let token = jwt.sign({type: req.body.loginType, id: advertiser.id}, 'secerdt key')  // topken info
+        res.send({
+          token: token
+        })
   })
-
+  .catch(err => next(err))
+})
+})
 })
 
 // route to get a single podcast
@@ -64,14 +69,16 @@ router.delete('/:id', (req, res, next) => {
 function params(req, hash) {
   return {
     name: req.body.name,
-    itunes_url: req.body.itunes_url,
+    website: req.body.itunes_url,
     summary: req.body.summary,
+    location: req.body.location,
     demo: req.body.demo,
-    subject: req.body.subject,
+    // subject: req.body.subject,
     profile_image: req.body.profile_image,
     contact: req.body.contact,
     tags: req.body.tags,
     email: req.body.email,
+    loginType: req.body.loginType,
     hashed_password: hash
   }
 }

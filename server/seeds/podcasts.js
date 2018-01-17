@@ -16,7 +16,8 @@ exports.seed = function(knex, Promise) {
           profile_image: 'http://is1.mzstatic.com/image/thumb/Music62/v4/a2/28/46/a22846be-aa37-a34f-b0b1-82f2eda98fff/source/1200x630bb.jpg',
           images: '',
           contact: 'jakem@avalon-usa.com',
-          tags: 'comedian Tony Hinchcliffe live comedy store Redban funny'
+          tags: 'comedian, Tony Hinchcliffe, live, comedy store, Redban, funny',
+          loginType: 'podcaster'
         },
         {
           email: 'jre@jre.com',
@@ -31,7 +32,8 @@ exports.seed = function(knex, Promise) {
           profile_image: "http://is4.mzstatic.com/image/thumb/Music127/v4/d0/e6/5f/d0e65f81-c2cf-7f59-38e4-6abcfab7e38a/source/1200x630bb.jpg",
           images: '',
           contact: 'jresponsorship@joerogan.net',
-          tags: 'joe rogan comedy'
+          tags: 'joe rogan, comedy',
+          loginType: 'podcaster'
         },
         {
           email: 'star@talk.com',
@@ -46,7 +48,8 @@ exports.seed = function(knex, Promise) {
           profile_image: "http://is2.mzstatic.com/image/thumb/Music62/v4/8e/0a/70/8e0a7014-9ccc-b532-5eb7-2b803d1a571a/source/1200x630bb.jpg",
           images: '',
           contact: 'advertising@startalkradio.net',
-          tags: 'science space neil degreasse tyson'
+          tags: 'science, space, neil degreasse tyson',
+          loginType: 'podcaster'
         },
         {
           email: 's@town.com',
@@ -61,7 +64,8 @@ exports.seed = function(knex, Promise) {
           profile_image: "http://is3.mzstatic.com/image/thumb/Music111/v4/e3/6f/f6/e36ff694-9e7d-c46e-7687-3856749d670f/source/1200x630bb.jpg",
           images: '',
           contact: 'press@stownpodcast.org',
-          tags: 'personal Journal clock NPR this american life'
+          tags: 'personal Journal, clock, NPR, this american life',
+          loginType: 'podcaster'
         },
         {
           email: 'the@vergecast.com',
@@ -76,7 +80,8 @@ exports.seed = function(knex, Promise) {
           profile_image: "http://is5.mzstatic.com/image/thumb/Music19/v4/b5/f3/1e/b5f31eaa-a3d3-2c30-377f-cc74713cc07b/source/1200x630bb.jpg",
           images: '',
           contact: 'https://www.theverge.com/contact-the-verge',
-          tags: 'science technology tech apple samsung'
+          tags: 'science, technology, tech, apple, samsung',
+          loginType: 'podcaster'
         },
       ]);
     });

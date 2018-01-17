@@ -10,10 +10,46 @@
       $stateProvider
       .state('podcasts',{
         url: '/',
-        component: 'podcasts'
+        component: 'podcasts',
+        resolve: {
+          loggedIn: function($http, $window, $state){
+            let token = $window.localStorage.getItem('token');
+            $http.post('/auth/verifypodcast', {token:token})
+              .then( response => {
+                console.log(response);
+                if (response.data !== 'fail') {
+                  $window.localStorage.setItem('user',JSON.stringify(response.data))
+                  return true
+                } else {
+                  $state.go('create')
+                }
+              })
+              .catch( err => {
+                return err;
+              })
+          }
+        },
       })
       .state('advertisers',{
         url: '/advertisers',
+        resolve: {
+          loggedIn: function($http, $window, $state){
+            let token = $window.localStorage.getItem('token');
+            $http.post('/auth/verifyadvertiser', {token:token})
+            .then( response => {
+              console.log(response);
+              if (response.data !== 'fail') {
+                $window.localStorage.setItem('user',JSON.stringify(response.data))
+                return true
+              } else {
+                $state.go('create')
+              }
+            })
+            .catch( err => {
+              return err;
+            })
+          }
+        },
         component: 'advertisers'
       })
       .state('create',{

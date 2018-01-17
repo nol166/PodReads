@@ -13,7 +13,8 @@ exports.seed = function(knex, Promise) {
           demo: 'Males and females ages 22 - 35',
           profile_image: "https://www.ziprecruiter.com/zrs/f810ae13/img/logos/ziprecruiter-blacktext.svg",
           contact: '(877) 252-1062',
-          tags: ''
+          tags: 'jobs, recruiter, employment',
+          loginType: 'advertiser'
         },
         {
           email: 'nature@box.com',
@@ -25,7 +26,8 @@ exports.seed = function(knex, Promise) {
           demo: 'Males and females of all ages',
           profile_image: "https://naturebox.com/assets/images/logo_739x739.jpg",
           contact: 'naturebox@accelerationpartners.com',
-          tags: 'snacks naturebox health nuts hungry food'
+          tags: 'snacks, naturebox, health, nuts, hungry, food',
+          loginType: 'advertiser'
         },
         {
           email: 'quip@quip.com',
@@ -37,7 +39,8 @@ exports.seed = function(knex, Promise) {
           demo: 'All ages',
           profile_image: 'https://workablehr.s3.amazonaws.com/uploads/account/logo/195847/quip_LOGO_raw.png',
           contact: 'partners@getquip.com',
-          tags: 'teeth dental clean design brush'
+          tags: 'teeth, dental, clean, design, brush',
+          loginType: 'advertiser'
         },
         {
           email: 'dsc@dsc.com',
@@ -49,7 +52,8 @@ exports.seed = function(knex, Promise) {
           demo: 'Men ages 21 - 55',
           profile_image: 'https://fortunedotcom.files.wordpress.com/2015/03/dollar-shave-club-dubin-blades-ad-01.png',
           contact: 'partnerships@dollarshaveclub.com',
-          tags: 'razors shave men butter shower'
+          tags: 'razors, shave, men, butter, shower',
+          loginType: 'advertiser'
         },
         {
           email: 'adult@swim.com',
@@ -61,7 +65,8 @@ exports.seed = function(knex, Promise) {
           demo: 'Men and women ages 16 - 35',
           profile_image: 'https://i0.wp.com/www.columbusunderground.com/wp-content/uploads/2016/08/adult-swim-02.jpg?fit=1200%2C738',
           contact: 'https://www.adultswim.com/footer/contact/',
-          tags: 'adultswim Cartoon animated comedy tv'
+          tags: 'adultswim, Cartoon, animated, comedy, tv',
+          loginType: 'advertiser'
         },
         {
           email: 'stitch@fix.com',
@@ -73,7 +78,8 @@ exports.seed = function(knex, Promise) {
           demo: 'Men and women ages 21 - 65',
           profile_image: 'https://d1b5h9psu9yexj.cloudfront.net/21897/Stitch-Fix_20171018-180155_fullsize.jpg',
           contact: 'https://support.stitchfix.com/hc/en-us/requests/new?ticket_form_id=25334',
-          tags: 'razors shave men butter shower'
+          tags: 'razors, shave, men, butter, shower',
+          loginType: 'advertiser'
         },
       ]);
     });

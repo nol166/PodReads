@@ -1,20 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const knex = require ('../db/knex');
+const knex = require('../db/knex');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // route to get list of podcasts
 router.get('/', (req, res) => {
   knex('podcasts')
     .then((podcasts) => {
       res.send(podcasts)
-      });
+    });
 });
 
 // route to get a single podcast
 router.get('/:id', (req, res, next) => {
   knex('podcasts')
-    .where({id: req.params.id})
+    .where({
+      id: req.params.id
+    })
     .first()
     .then(podcast => res.json(podcast))
     .catch(err => next(err))
@@ -24,7 +27,9 @@ router.get('/:id', (req, res, next) => {
 router.patch('/:id', validate, (req, res, next) => {
   knex('podcasts')
     .update(params(req))
-    .where({id: req.params.id})
+    .where({
+      id: req.params.id
+    })
     .returning('*')
     .then(podcasts => res.json(podcasts[0]))
     .catch(err => next(err))
@@ -34,27 +39,58 @@ router.patch('/:id', validate, (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
   knex('podcasts')
     .del()
-    .where({id: req.params.id})
+    .where({
+      id: req.params.id
+    })
     .then(() => res.send("deleted the item"))
     .catch(err => next(err))
 })
 
 // add a new podcast
+// THIS IS SIGN UP
 router.post('/', (req, res, next) => {
   // console.log("The request body is: ", req);
   // console.log("REQUEST BODY IS: ", req.body);
 
   // // add bcrypt thing to create password hash from req.body.password
-  bcrypt.genSalt(10, function(err, salt){
-    bcrypt.hash(req.body.password, salt, function(err, hash){
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(req.body.password, salt, function(err, hash) {
       // store password in password db
+
+      // crate thie jwt
+
       knex('podcasts')
-      .insert(params(req, hash))
-      .returning('*')
-      .then(podcasts => res.json(podcasts[0]))
-      .catch(err => next(err))
+        .insert(params(req, hash))
+        .returning('*')
+        .then(podcasts => {
+          let podcaster = podcasts[0];
+          let token = jwt.sign({type: req.body.loginType, id: podcaster.id}, 'secerdt key')  // topken info
+          res.send({
+            token: token
+          })
+        })
+        .catch(err => next(err))
     })
   })
+
+})
+
+router.put('/login', (req, res, next) => {
+  // console.log("The request body is: ", req);
+  // console.log("REQUEST BODY IS: ", req.body);
+  knex('podcasts')
+    .where({
+      email: req.body.email
+    })
+    .then(() => {
+      bcrypt.compare(req.body.password, res.body.hashed_password, function(err, result) {
+        if (result) {} else {
+          return res.status(401).send()
+        }
+      })
+    })
+
+  // // add bcrypt thing to create password hash from req.body.password
 
 })
 
@@ -70,6 +106,7 @@ function params(req, hash) {
     contact: req.body.contact,
     tags: req.body.tags,
     email: req.body.email,
+    loginType: req.body.loginType,
     hashed_password: hash
   }
 }
@@ -79,10 +116,15 @@ function validate(req, res, next) {
   const errors = [];
   ['name', 'itunes_url', 'summary', 'demo', 'subject', 'profile_image', 'contact', 'tags', 'email', 'password'].forEach(field => {
     if (!req.body[field] || req.body[field].trim() === '') {
-      errors.push({field: field, messages: ["cannot be blank"]})
+      errors.push({
+        field: field,
+        messages: ["cannot be blank"]
+      })
     }
   })
-  if (errors.length) return res.status(422).json({errors})
+  if (errors.length) return res.status(422).json({
+    errors
+  })
   next()
 }
 
