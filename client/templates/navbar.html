@@ -1,0 +1,14 @@
+<nav class="black" >
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo left"><img class="brand-img" id="logo" height="64" src="assets/200w_d.gif"/>podreads</a>
+
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a ng-if="$ctrl.loginType === 'podcaster'" ui-sref="podcastEdit">my podcast</a></li>
+      <li><a ng-if="$ctrl.loginType === 'advertiser'" ui-sref="advertiserEdit">my profile</a></li>
+      <li><a ui-sref="podcasts">podcasts</a></li>
+      <li><a ui-sref="advertisers">advertisers</a></li>
+      <li><a ui-sref="create" ng-if="!$ctrl.loginType">sign in</a></li>
+      <li><a ng-click="$ctrl.signout()" ng-if="$ctrl.loginType">sign out</a></li>
+    </ul>
+  </div>
+</nav>

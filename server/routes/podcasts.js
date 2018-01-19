@@ -24,9 +24,23 @@ router.get('/:id', (req, res, next) => {
 })
 
 // route to edit a podcast
-router.patch('/:id', validate, (req, res, next) => {
+
+router.patch('/:id', (req, res, next) => {
+  // verify token req.body.token
+  console.log('hello', req.body);
   knex('podcasts')
-    .update(params(req))
+    .update({
+      name: req.body.podcast.name,
+      itunes_url: req.body.podcast.itunes_url,
+      summary: req.body.podcast.summary,
+      demo: req.body.podcast.demo,
+      subject: req.body.podcast.subject,
+      profile_image: req.body.podcast.profile_image,
+      contact: req.body.podcast.contact,
+      tags: req.body.podcast.tags,
+      email: req.body.podcast.email,
+      loginType: req.body.podcast.loginType,
+    })
     .where({
       id: req.params.id
     })
@@ -49,6 +63,8 @@ router.delete('/:id', (req, res, next) => {
 // add a new podcast
 // THIS IS SIGN UP
 router.post('/', (req, res, next) => {
+  console.log(">>>>>>", req.body);
+
   // console.log("The request body is: ", req);
   // console.log("REQUEST BODY IS: ", req.body);
 
@@ -63,6 +79,7 @@ router.post('/', (req, res, next) => {
         .insert(params(req, hash))
         .returning('*')
         .then(podcasts => {
+          console.log('login type is: ', req.body.loginType);
           let podcaster = podcasts[0];
           let token = jwt.sign({type: req.body.loginType, id: podcaster.id}, 'secerdt key')  // topken info
           res.send({

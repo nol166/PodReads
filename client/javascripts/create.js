@@ -20,23 +20,28 @@ angular.module("podreads")
 
     // sign up for advertiser
       vm.addAdvertiser = () => {
+        console.log(vm.advertiser);
+        vm.advertiser.loginType = 'advertiser'
+
         $http.post('/advertisers', vm.advertiser)
           .then(response => {
             console.log("clicked advertiser submit")
             // response.data.comments = []
-            vm.advertiser.push(response.data)
-            delete vm.advertiser
+            console.log(response);
+            $window.localStorage.setItem('token', response.data.token)
+            $state.go('advertisers')
           })
           .catch(function(error) {
           // , function(err) {
           //   console.log(err);
           // })
-      })
-     }
+          })
+    }
 
     // sign up for podcaster
       vm.addPodcast = () => {
         console.log(vm.podcast);
+        vm.podcast.loginType = 'podcaster'
         $http.post('/podcasts', vm.podcast)
           .then(response => {
             console.log("clicked podcast submit")
@@ -58,13 +63,13 @@ angular.module("podreads")
       // replace test@test.com stuff with form data to log in
       $http.post('/auth/login', {email: vm.user.email, password: vm.user.password, loginType: vm.user.loginType})
         .then(function(response){
-          // console.log(vm.user.email);
+          console.log(vm.user.email);
           console.log('USER DATA FROM BACKEND',response);
           $window.localStorage.setItem('token', response.data.token)
           if (vm.user.loginType === 'podcaster') {
             $state.go('podcasts')
-          } else {
-            $state.go('advertiser')
+          } else if (vm.user.loginType === 'advertiser'){
+            $state.go('advertisers')
           }
         }, function(err) {
           console.log(err);

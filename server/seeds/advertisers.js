@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
           location: 'Santa Monica, CA',
           summary: "We’re Helping People Find Great Jobs and Helping Employers Build Great Companies",
           demo: 'Males and females ages 22 - 35',
-          profile_image: "https://www.ziprecruiter.com/zrs/f810ae13/img/logos/ziprecruiter-blacktext.svg",
+          profile_image: "https://images-na.ssl-images-amazon.com/images/I/41PxhFG1VTL.png",
           contact: '(877) 252-1062',
           tags: 'jobs, recruiter, employment',
           loginType: 'advertiser'
@@ -24,7 +24,7 @@ exports.seed = function(knex, Promise) {
           location: "San Fancisco, CA",
           summary: "We are a deliever service that offers healthy snacks delievered right to your door",
           demo: 'Males and females of all ages',
-          profile_image: "https://naturebox.com/assets/images/logo_739x739.jpg",
+          profile_image: "https://tctechcrunch2011.files.wordpress.com/2014/04/naturebox-snacksontable.jpg",
           contact: 'naturebox@accelerationpartners.com',
           tags: 'snacks, naturebox, health, nuts, hungry, food',
           loginType: 'advertiser'
@@ -37,7 +37,7 @@ exports.seed = function(knex, Promise) {
           location: '45 Main St Brooklyn, NY 11201',
           summary: "we design products that guide good habits (and exclude the gimmicks that don't to simplify a healthy routine! Quip is a new(ish) electric toothbrush that is very, very pretty. There are two models: a $25 plastic one (either blue or green), and a $45 metal one (silver, gold, black, or copper). When you buy a Quip, you also sign up to get a replacement brush head delivered to you every three months",
           demo: 'All ages',
-          profile_image: 'https://workablehr.s3.amazonaws.com/uploads/account/logo/195847/quip_LOGO_raw.png',
+          profile_image: 'http://www.brandchannel.com/wp-content/uploads/2017/04/quip-toothbrushes-range-1024x576.jpg',
           contact: 'partners@getquip.com',
           tags: 'teeth, dental, clean, design, brush',
           loginType: 'advertiser'

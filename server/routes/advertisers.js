@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
 
 // route to create a advertiser
 router.post('/', (req, res, next) => {
+  console.log('you cliked submit on the advertiser form');
   // console.log("The request body is: ", req);
   // console.log("REQUEST BODY IS: ", req.body);
 
@@ -48,9 +49,27 @@ router.get('/:id', (req, res, next) => {
 })
 
 // route to edit a podcast
-router.patch('/:id', validate, (req, res, next) => {  knex('advertisers')
-    .update(params(req))
-    .where({id: req.params.id})
+router.patch('/:id', (req, res, next) => {
+  // verify token req.body.token
+  console.log('hello', req.body);
+  knex('advertisers')
+    .update({
+      id: req.body.advertiser.id,
+      email: req.body.advertiser.email,
+      name: req.body.advertiser.name,
+      website: req.body.advertiser.website,
+      location: req.body.advertiser.location,
+      summary: req.body.advertiser.summary,
+      demo: req.body.advertiser.demo,
+      profile_image: req.body.advertiser.profile_image,
+      contact: req.body.advertiser.contact,
+      tags: req.body.advertiser.tags,
+      loginType: req.body.advertiser.loginType,
+      images: req.body.advertiser.images
+    })
+    .where({
+      id: req.params.id
+    })
     .returning('*')
     .then(advertisers => res.json(advertisers[0]))
     .catch(err => next(err))

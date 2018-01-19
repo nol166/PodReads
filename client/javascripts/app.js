@@ -16,7 +16,8 @@
             let token = $window.localStorage.getItem('token');
               $http.post('/auth/verify', {token:token})
                 .then( response => {
-                  console.log(response);
+                  console.log('hello')
+                  console.log('this should be the reponse',response);
                   if (response.data !== 'fail') {
                     console.log(response.data);
                     if (response.data.loginType === 'podcaster') {
@@ -42,7 +43,7 @@
             let token = $window.localStorage.getItem('token');
             $http.post('/auth/verify', {token:token})
             .then( response => {
-              console.log(response);
+              console.log("this should be the response", response);
               if (response.data !== 'fail') {
                 if (response.data.loginType === 'advertiser') {
                   $window.localStorage.setItem('user',JSON.stringify(response.data))
@@ -66,6 +67,10 @@
       .state('podcastEdit',{
         url: '/podcastEdit',
         component: 'podcastEdit'
+      })
+      .state('advertiserEdit',{
+        url: '/advertiserEdit',
+        component: 'advertiserEdit'
       })
     }
 

@@ -5,36 +5,23 @@ angular.module("podreads")
       controller: function($http, $stateParams, $state, $window) {
         const vm = this
         vm.editPodcast = editPodcast
-        let podcast;
         let currentUser = JSON.parse($window.localStorage.getItem('user'))
         console.log(currentUser);
 
         vm.$onInit = function() {
+          console.log("edit podcast init working");
+          // console.log(vm.podcast);
           $http.get(`/podcasts/${currentUser.id}`)
             .then(response => {
               vm.podcast = response.data
             })
         }
 
-        function editPodcast() {
+          function editPodcast() {
+          console.log('editPodcast is called');
+          console.log('this is vm podcast', vm.podcast);
           $http.patch(`/podcasts/${currentUser.id}`, {
-            podcast: {
-              id: podcast.id,
-              email: podcast.email,
-              summary: podcast.summary,
-              tags: podcast.tags,
-              name: podcast.name,
-              genre: podcast.genre,
-              itunes_url: podcast.itunes_url,
-              website: podcast.website,
-              reader: podcast.reader,
-              profile_image: podcast.profile_image,
-              contact: podcast.contact,
-              subject: podcast.subject,
-              demo: podcast.demo,
-              loginType: decoded.type,
-              images: podcast.images
-            },
+            podcast: vm.podcast,
             token: $window.localStorage.getItem('token')
           })
             .then(response => {

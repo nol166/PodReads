@@ -9,9 +9,9 @@ angular.module("podreads")
 
 
            vm.$onInit = function() {
-             console.log($window.localStorage.getItem('user'));
+             console.log('this should be the user', $window.localStorage.getItem('user'));
              let user = JSON.parse($window.localStorage.getItem('user'));
-             console.log(user.name, "is logged in");
+             // console.log(user.name, "is logged in");
 
              $http.get('/podcasts')
                .then(response => {

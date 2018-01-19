@@ -30,6 +30,7 @@
 </style>
 
 <!-- login form -->
+<navbar></navbar>
 <div class="section"></div>
 <main>
   <center>
@@ -98,8 +99,8 @@
       <label>Create account<input type="checkbox" ng-model="checked" ng-init="checked=false" /></label><br/>
       <span ng-if="checked" class="animate-if">
       <!-- buttons -->
-      <a class="waves-effect waves-light btn-large" ng-init="showme=true" ng-click="showme=!showme">I have a podcast</a>
-      <a class="waves-effect waves-light btn-large" ng-click="showme=!showme">I am an advertiser</a>
+      <a class="waves-effect waves-light btn-large" ng-init="showme=true" ng-click="showme=!showme" ng-model="$ctrl.user.loginType" value="podcaster">I have a podcast</a>
+      <a class="waves-effect waves-light btn-large" ng-click="showme=!showme" ng-model="$ctrl.user.loginType" value="advertiser">I am an advertiser</a>
 
 
 <!-- form for podcasters -->

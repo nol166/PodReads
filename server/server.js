@@ -36,7 +36,7 @@ app.set('views', path.join(__dirname, '/views'))
 
 
 app.get('/', function(req, res){
-  console.log('things are happening ...');
+  console.log('/ was accessed');
   //you can do this
   res.render('index')
 })

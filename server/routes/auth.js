@@ -12,7 +12,9 @@ const jwt = require('jsonwebtoken');
 // router.post('/signup')
 
 router.post('/login', (req, res) => {
-  console.log('hi' ,req.body);
+  console.log(">>>>>>", req.body);
+
+  // console.log('hi' ,req.body);
   // First check to see if we have a req.body
   // If no body is passed in, respond with a 400.
   if (!req.body || !req.body.email || !req.body.password || !req.body.loginType) {
@@ -22,10 +24,12 @@ router.post('/login', (req, res) => {
 
   // We do have the data we need to login a user!
   if (req.body.loginType === 'advertiser') {
+    console.log(req.body);
     // Make knex call to advertisers table to grab advertiser with email sent from frontend.
     knex('advertisers').where('email', req.body.email).first()
     .then((advertiser) => {
-      bcrypt.compare(req.body.password, podcaster.hashed_password, (err, success) => {
+      console.log(advertiser);
+      bcrypt.compare(req.body.password, advertiser.hashed_password, (err, success) => {
         if (err) {
           // The passwords do not match, respond with a 401
           res.sendStatus(401);
@@ -46,7 +50,7 @@ router.post('/login', (req, res) => {
 
   else if (req.body.loginType === 'podcaster') {
     // Make knex call to podcasts table to grab podcaster with email sent from frontend.
-    console.log(' accessing podcaster ');
+    // console.log(' accessing podcaster ');
     knex('podcasts').where('email', req.body.email).first()
     .then((podcaster) => {
       bcrypt.compare(req.body.password, podcaster.hashed_password, (err, success) => {
@@ -75,15 +79,15 @@ router.post('/verify', (req, res) => {
   try {
     decoded = jwt.verify(req.body.token, 'secerdt key');
     let userId = decoded.id;
-    console.log(decoded);
+    // console.log(decoded);
     if (decoded.type === 'podcaster') {
-      console.log('decoded');
+      // console.log('decoded');
       knex('podcasts').where('id', userId)
       .then( result => {
         let podcast = result[0];
-        console.log(podcast);
+        // console.log(podcast);
         res.json({
-          id: podcast.id,
+          id: decoded.id,
           email: podcast.email,
           summary: podcast.summary,
           tags: podcast.tags,
@@ -121,7 +125,7 @@ router.post('/verify', (req, res) => {
       })
     }
   } catch(err) {
-    console.log(err);
+    // console.log(err);
     res.send('fail')
   }
   // res.send(decoded)
