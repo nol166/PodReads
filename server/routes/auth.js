@@ -25,25 +25,28 @@ router.post('/login', (req, res) => {
     // Make knex call to advertisers table to grab advertiser with email sent from frontend.
     knex('advertisers').where('email', req.body.email).first()
     .then((advertiser) => {
-      // Now we want to compare the password from the frontend to the hashed_password stored in the table.
-      // This is the callback implementation of the compare function.
-      bcrypt.compare(req.body.password, advertiser.hashed_password, (err, success) => {
+      bcrypt.compare(req.body.password, podcaster.hashed_password, (err, success) => {
         if (err) {
           // The passwords do not match, respond with a 401
           res.sendStatus(401);
         }
         // Yay, passwords match, user can be signed in!
-
-        // create token that has advertiser id, secret key (use dotenv)
-
-        // send token over with advertiser information
-        res.send('yay')
+        if (success) {
+          // go into database and
+          let token = jwt.sign({type: req.body.loginType, id: advertiser.id}, 'secerdt key')  // topken info
+          res.send({
+            token: token,
+            advertiser: advertiser
+          })
+        }
 
       })
     })
   }
+
   else if (req.body.loginType === 'podcaster') {
     // Make knex call to podcasts table to grab podcaster with email sent from frontend.
+    console.log(' accessing podcaster ');
     knex('podcasts').where('email', req.body.email).first()
     .then((podcaster) => {
       bcrypt.compare(req.body.password, podcaster.hashed_password, (err, success) => {
@@ -67,15 +70,20 @@ router.post('/login', (req, res) => {
 
 });
 
-router.post('/verifypodcast', (req, res) => {
+router.post('/verify', (req, res) => {
   var decoded;
   try {
     decoded = jwt.verify(req.body.token, 'secerdt key');
     let userId = decoded.id;
-    knex('podcasts').where('id', userId)
+    console.log(decoded);
+    if (decoded.type === 'podcaster') {
+      console.log('decoded');
+      knex('podcasts').where('id', userId)
       .then( result => {
         let podcast = result[0];
+        console.log(podcast);
         res.json({
+          id: podcast.id,
           email: podcast.email,
           summary: podcast.summary,
           tags: podcast.tags,
@@ -88,42 +96,30 @@ router.post('/verifypodcast', (req, res) => {
           contact: podcast.contact,
           subject: podcast.subject,
           demo: podcast.demo,
-          loginType: podcast.loginType,
+          loginType: decoded.type,
           images: podcast.images
         })
       })
-  } catch(err) {
-    console.log(err);
-    res.send('fail')
-  }
-  // res.send(decoded)
-})
-
-router.post('/verifyadvertiser', (req, res) => {
-  var decoded;
-  try {
-    decoded = jwt.verify(req.body.token, 'secerdt key');
-    let userId = decoded.id;
-    knex('advertisers').where('id', userId)
+    } else {
+      knex('advertisers').where('id', userId)
       .then( result => {
         let advertiser = result[0];
         res.json({
+          id: advertiser.id,
           email: advertiser.email,
-          summary: advertiser.summary,
-          tags: advertiser.tags,
           name: advertiser.name,
-          genre: advertiser.genre,
-          itunes_url: advertiser.itunes_url,
           website: advertiser.website,
-          reader: advertiser.reader,
+          location: advertiser.location,
+          summary: advertiser.summary,
+          demo: advertiser.demo,
           profile_image: advertiser.profile_image,
           contact: advertiser.contact,
-          subject: advertiser.subject,
-          demo: advertiser.demo,
-          loginType: advertiser.loginType,
+          tags: advertiser.tags,
+          loginType: decoded.type,
           images: advertiser.images
         })
       })
+    }
   } catch(err) {
     console.log(err);
     res.send('fail')

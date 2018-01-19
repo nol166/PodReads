@@ -29,7 +29,6 @@
   }
 </style>
 
-
 <!-- login form -->
 <div class="section"></div>
 <main>
@@ -49,36 +48,55 @@
             </div>
           </div>
 
-          <div class='row'>
-            <div class='input-field col s12'>
-              <input class='validate' type='email' name='email' id='email' />
-              <label for='email'>Enter your email</label>
-            </div>
-          </div>
 
-          <div class='row'>
-            <div class='input-field col s12'>
-              <input class='validate' type='password' name='password' id='password' />
-              <label for='password'>Enter your password</label>
+            <!-- <p>Please select your preferred login method:</p> -->
+            <div>
+              <input type="radio" id="podcaster" name="loginType" ng-model="$ctrl.user.loginType" value="podcaster">
+              <label for="podcaster">Podcaster</label>
+
+              <input type="radio" id="advertiser" name="loginType" ng-model="$ctrl.user.loginType" value="advertiser">
+              <label for="advertiser">Advertiser</label>
             </div>
-            <label style='float: right;'>
+            <br><br>
+
+          <!-- form use for loginType -->
+
+                    <!-- <div class='row'>
+                      <div class='input-field col s12'>
+                        <input class='validate' type='text' name='loginType' id='loginType' ng-model="$ctrl.user.loginType" />
+                        <label for='loginType'>loginType</label>
+                      </div> -->
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='email' name='email' id='email' ng-model="$ctrl.user.email" />
+                <label for='email'>Enter your email</label>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='password' name='password' id='password' ng-model="$ctrl.user.password" />
+                <label for='password'>Enter your password</label>
+              </div>
+              <label style='float: right;'>
 								<a class='pink-text' href='#!'><b>Forgot Password?</b></a>
 							</label>
-          </div>
-
-          <br />
-          <center>
-            <div class='row'>
-              <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</button>
             </div>
-          </center>
-        </form>
-      </div>
-    </div>
-    <!-- <a href="">Create account</a> -->
 
-    <label>Create account<input type="checkbox" ng-model="checked" ng-init="checked=false" /></label><br/>
-    <span ng-if="checked" class="animate-if">
+            <br />
+            <center>
+              <div class='row'>
+                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</button>
+              </div>
+            </center>
+        </form>
+        </div>
+      </div>
+      <!-- <a href="">Create account</a> -->
+
+      <label>Create account<input type="checkbox" ng-model="checked" ng-init="checked=false" /></label><br/>
+      <span ng-if="checked" class="animate-if">
       <!-- buttons -->
       <a class="waves-effect waves-light btn-large" ng-init="showme=true" ng-click="showme=!showme">I have a podcast</a>
       <a class="waves-effect waves-light btn-large" ng-click="showme=!showme">I am an advertiser</a>
@@ -93,7 +111,7 @@
               <!-- <label for="name">Podcast name</label> -->
             </div>
             <div class="input-field col s6">
-              <input required ng-model="$ctrl.podcast.itunes_url" id="itunes_url" type="text" class="validate" placeholder="iTunes URL">
+              <input required ng-model="$ctrl.podcast.itunes_url" id="itunes_url" type="text" class="" placeholder="iTunes URL">
               <!-- <label for="itunes_url">iTunes URL</label> -->
             </div>
           </div>
@@ -123,13 +141,19 @@
               <!-- <label for="demo">Contact number or email</label> -->
             </div>
             <div class="input-field col s6">
-              <input required ng-model="$ctrl.podcast.tags" id="tags" type="text" class="validate" placeholder="Tags (sepeºrate with commas)">
+              <input required ng-model="$ctrl.podcast.tags" id="tags" type="text" class="validate" placeholder="Tags (seperate with commas)">
               <!-- <label for="reader">Subject</label> -->
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
               <input required ng-model="$ctrl.podcast.profile_image" id="profile_image" type="text" class="validate" placeholder="Profile image URL">
+              <!-- <label for="reader">profile image</label> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input required ng-model="$ctrl.podcast.summary" id="summary" type="text" class="validate" placeholder="Tell us about your podcast">
               <!-- <label for="reader">profile image</label> -->
             </div>
           </div>
@@ -166,7 +190,7 @@
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <input required ng-model="$ctrl.advertiser.location" id="location" type="text" class="validate" placeholder="Location">
+              <input required ng-model="$ctrl.advertiser.location" id="location" type="text" class="" placeholder="Location">
               <!-- <label for="location">location</label> -->
             </div>
             <div class="input-field col s6">
@@ -186,7 +210,7 @@
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <input required ng-model="$ctrl.advertiser.contact" id="contact" type="text" class="validate" placeholder="Contct number or email">
+              <input required ng-model="$ctrl.advertiser.contact" id="contact" type="text" class="validate" placeholder="Contact number or email">
               <!-- <label for="demo">Contact number or email</label> -->
             </div>
             <div class="input-field col s6">

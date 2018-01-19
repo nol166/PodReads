@@ -1,0 +1,67 @@
+<div class="row">
+  <form class="col s12" ng-submit="$ctrl.editPodcast()">
+    <div class="row">
+      <div class="input-field col s6">
+        <input required ng-model="$ctrl.podcast.name" id="name" type="text" class="validate" placeholder="Podcast name">
+        <!-- <label for="name">Podcast name</label> -->
+      </div>
+      <div class="input-field col s6">
+        <input required ng-model="$ctrl.podcast.itunes_url" id="itunes_url" type="text" class="" placeholder="iTunes URL">
+        <!-- <label for="itunes_url">iTunes URL</label> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input required ng-model="$ctrl.podcast.website" id="website" type="text" class="validate" placeholder="Website">
+        <!-- <label for="website">Website</label> -->
+      </div>
+      <div class="input-field col s6">
+        <input required ng-model="$ctrl.podcast.reader" id="reader" type="text" class="validate" placeholder="Reader">
+        <!-- <label for="reader">Reader</label> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input required ng-model="$ctrl.podcast.demo" id="demo" type="text" class="validate" placeholder="Demographic">
+        <!-- <label for="demo">Demographic</label> -->
+      </div>
+      <div class="input-field col s6">
+        <input required ng-model="$ctrl.podcast.subject" id="subject" type="text" class="validate" placeholder="Subject">
+        <!-- <label for="reader">Subject</label> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input required ng-model="$ctrl.podcast.contact" id="contact" type="text" class="validate" placeholder="Contact number or email">
+        <!-- <label for="demo">Contact number or email</label> -->
+      </div>
+      <div class="input-field col s6">
+        <input required ng-model="$ctrl.podcast.tags" id="tags" type="text" class="validate" placeholder="Tags (seperate with commas)">
+        <!-- <label for="reader">Subject</label> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input required ng-model="$ctrl.podcast.profile_image" id="profile_image" type="text" class="validate" placeholder="Profile image URL">
+        <!-- <label for="reader">profile image</label> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input required ng-model="$ctrl.podcast.summary" id="summary" type="text" class="validate" placeholder="Tell us about your podcast">
+        <!-- <label for="reader">profile image</label> -->
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="input-field col s12">
+        <input required ng-model="$ctrl.podcast.password" id="password" type="password" class="validate" placeholder="password">
+      </div> -->
+    </div>
+    <!-- <div class="row">
+      <div class="input-field col s12">
+        <input required ng-model="$ctrl.podcast.email" id="email" type="email" class="validate" placeholder="email">
+      </div> -->
+    </div>
+    <button class='col s12 btn btn-large waves-effect indigo light' type="submit" name="action">Submit</button>
+  </form>
+</div>

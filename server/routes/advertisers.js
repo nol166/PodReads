@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const knex = require ('../db/knex');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 
 
 // route to get list of advertisers
@@ -30,10 +32,10 @@ router.post('/', (req, res, next) => {
         res.send({
           token: token
         })
+      })
+      .catch(err => next(err))
+    })
   })
-  .catch(err => next(err))
-})
-})
 })
 
 // route to get a single podcast
@@ -46,8 +48,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 // route to edit a podcast
-router.patch('/:id', validate, (req, res, next) => {
-  knex('advertisers')
+router.patch('/:id', validate, (req, res, next) => {  knex('advertisers')
     .update(params(req))
     .where({id: req.params.id})
     .returning('*')

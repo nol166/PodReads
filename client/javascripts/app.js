@@ -14,20 +14,25 @@
         resolve: {
           loggedIn: function($http, $window, $state){
             let token = $window.localStorage.getItem('token');
-            $http.post('/auth/verifypodcast', {token:token})
-              .then( response => {
-                console.log(response);
-                if (response.data !== 'fail') {
-                  $window.localStorage.setItem('user',JSON.stringify(response.data))
-                  return true
-                } else {
-                  $state.go('create')
-                }
-              })
-              .catch( err => {
-                return err;
-              })
-          }
+              $http.post('/auth/verify', {token:token})
+                .then( response => {
+                  console.log(response);
+                  if (response.data !== 'fail') {
+                    console.log(response.data);
+                    if (response.data.loginType === 'podcaster') {
+                      console.log('we are on second if');
+                      $window.localStorage.setItem('user',JSON.stringify(response.data))
+                      return true
+                    }
+                  } else {
+                    $state.go('create')
+                  }
+                })
+                .catch( err => {
+                  return err;
+                })
+
+            }
         },
       })
       .state('advertisers',{
@@ -35,12 +40,14 @@
         resolve: {
           loggedIn: function($http, $window, $state){
             let token = $window.localStorage.getItem('token');
-            $http.post('/auth/verifyadvertiser', {token:token})
+            $http.post('/auth/verify', {token:token})
             .then( response => {
               console.log(response);
               if (response.data !== 'fail') {
-                $window.localStorage.setItem('user',JSON.stringify(response.data))
-                return true
+                if (response.data.loginType === 'advertiser') {
+                  $window.localStorage.setItem('user',JSON.stringify(response.data))
+                  return true
+                }
               } else {
                 $state.go('create')
               }
@@ -55,6 +62,10 @@
       .state('create',{
         url: '/create',
         component: 'create'
+      })
+      .state('podcastEdit',{
+        url: '/podcastEdit',
+        component: 'podcastEdit'
       })
     }
 

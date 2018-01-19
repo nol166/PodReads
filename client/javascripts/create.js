@@ -54,18 +54,21 @@ angular.module("podreads")
 
     // SIGN IN FOR PODCAST AND ADVERTISERS
     vm.signIn = () => {
+      console.log("HELLO >>>", vm.user);
       // replace test@test.com stuff with form data to log in
-      $http.post('/auth/login', {email: 'test@test.com', password: 'test', loginType: 'podcaster'})
+      $http.post('/auth/login', {email: vm.user.email, password: vm.user.password, loginType: vm.user.loginType})
         .then(function(response){
+          // console.log(vm.user.email);
           console.log('USER DATA FROM BACKEND',response);
           $window.localStorage.setItem('token', response.data.token)
-          if (vm.loginType === 'podcaster') {
+          if (vm.user.loginType === 'podcaster') {
             $state.go('podcasts')
           } else {
             $state.go('advertiser')
           }
         }, function(err) {
           console.log(err);
+          alert('incorrect login credentials')
         })
     }
 
