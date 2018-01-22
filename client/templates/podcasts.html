@@ -1,4 +1,9 @@
+<script> // Materialize.toast(message, displayLength, className, completeCallback);
+  Materialize.toast('I am a toast!', 4000) // 4000 is the duration of the toast
+</script>
+
 <navbar></navbar>
+<a class="btn #424242 grey darken-3" onclick="Materialize.toast('Here you can see cards for content creators that are looking for sponsors. Click on a card to reveal detailed contact information and what they are all about.', 4000)">help</a>
 <!-- <label>Search: <input ng-model="searchText"></label>
 <table id="searchTextResults">
   <tr><th>Name</th><th>Tags</th></tr>
@@ -22,16 +27,19 @@
           <li class="collection-item"><a href="{{ podcast.website}}">website</a></li>
         </ul> -->
         <br>
-        <p><a href="{{ podcast.itunes_url}}">iTunes</a></p>
-        <p><a href="{{ podcast.website}}">website</a></p>
+        <p><a href="{{ podcast.itunes_url}}"><img src="../assets/listen3.svg"></a></p>
+        <p><a href="{{ podcast.play_url}}"><img src="../assets/play-music.svg" width='132.73'></a></p>
+        <!-- <p><a href="{{ podcast.stitcher_url}}"><img src="../assets/stitcher.svg" width='132.73'></a></p> -->
       </div>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">{{ podcast.name }}<i class="material-icons right">close</i></span>
         <div class="chip" ng-repeat="tag in podcast.tagList">
           {{ tag }}
         </div>
+        <p><a href="{{ podcast.website}}">website</a></p>
         <p>{{ podcast.summary }}</p>
-        <p><i>{{ podcast.contact }}</i></p>
+        <iframe style="border: solid 1px #dedede;"  src="https://app.stitcher.com/splayer/f/160940/52945549" width="220" height="150" frameborder="0" scrolling="no"></iframe>
+        <p><b>Contact: </b><i>{{ podcast.contact }}</i></p>
       </div>
     </div>
   </div>

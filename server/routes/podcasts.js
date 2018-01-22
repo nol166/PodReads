@@ -81,7 +81,7 @@ router.post('/', (req, res, next) => {
         .then(podcasts => {
           console.log('login type is: ', req.body.loginType);
           let podcaster = podcasts[0];
-          let token = jwt.sign({type: req.body.loginType, id: podcaster.id}, 'secerdt key')  // topken info
+          let token = jwt.sign({type: req.body.loginType, id: podcaster.id}, process.env.SECRETKEY)  // topken info
           res.send({
             token: token
           })

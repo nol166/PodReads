@@ -29,7 +29,7 @@ router.post('/', (req, res, next) => {
       .returning('*')
       .then(advertisers => {
         let advertiser = advertisers[0];
-        let token = jwt.sign({type: req.body.loginType, id: advertiser.id}, 'secerdt key')  // topken info
+        let token = jwt.sign({type: req.body.loginType, id: advertiser.id}, process.env.SECRETKEY)  // topken info
         res.send({
           token: token
         })

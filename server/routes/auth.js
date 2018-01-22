@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const router = express.Router();
 const knex = require ('../db/knex');
@@ -37,7 +38,7 @@ router.post('/login', (req, res) => {
         // Yay, passwords match, user can be signed in!
         if (success) {
           // go into database and
-          let token = jwt.sign({type: req.body.loginType, id: advertiser.id}, 'secerdt key')  // topken info
+          let token = jwt.sign({type: req.body.loginType, id: advertiser.id}, process.env.SECRETKEY)  // topken info
           res.send({
             token: token,
             advertiser: advertiser
@@ -61,7 +62,7 @@ router.post('/login', (req, res) => {
         // Yay, passwords match, user can be signed in!
         if (success) {
           // go into database and
-          let token = jwt.sign({type: req.body.loginType, id: podcaster.id}, 'secerdt key')  // topken info
+          let token = jwt.sign({type: req.body.loginType, id: podcaster.id}, process.env.SECRETKEY)  // topken info
           res.send({
             token: token,
             podcaster: podcaster
@@ -77,7 +78,7 @@ router.post('/login', (req, res) => {
 router.post('/verify', (req, res) => {
   var decoded;
   try {
-    decoded = jwt.verify(req.body.token, 'secerdt key');
+    decoded = jwt.verify(req.body.token, process.env.SECRETKEY);
     let userId = decoded.id;
     // console.log(decoded);
     if (decoded.type === 'podcaster') {
@@ -109,18 +110,18 @@ router.post('/verify', (req, res) => {
       .then( result => {
         let advertiser = result[0];
         res.json({
-          id: advertiser.id,
-          email: advertiser.email,
-          name: advertiser.name,
-          website: advertiser.website,
-          location: advertiser.location,
-          summary: advertiser.summary,
-          demo: advertiser.demo,
-          profile_image: advertiser.profile_image,
-          contact: advertiser.contact,
-          tags: advertiser.tags,
+          id: decoded.id,
+          email: decoded.email,
+          name: decoded.name,
+          website: decoded.website,
+          location: decoded.location,
+          summary: decoded.summary,
+          demo: decoded.demo,
+          profile_image: decoded.profile_image,
+          contact: decoded.contact,
+          tags: decoded.tags,
           loginType: decoded.type,
-          images: advertiser.images
+          images: decoded.images
         })
       })
     }

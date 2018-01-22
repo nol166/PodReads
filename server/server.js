@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const PORT = process.env.PORT || 8080;
@@ -8,6 +9,7 @@ const advertisers = require('./routes/advertisers');
 const create = require('./routes/create');
 const auth = require('./routes/auth');
 const path = require('path');
+
 
 
 const bodyParser = require('body-parser');

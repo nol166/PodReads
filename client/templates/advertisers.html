@@ -1,4 +1,9 @@
+<script> // Materialize.toast(message, displayLength, className, completeCallback);
+  Materialize.toast('I am a toast!', 4000) // 4000 is the duration of the toast
+</script>
+
 <navbar></navbar>
+<a class="btn #424242 grey darken-3" onclick="Materialize.toast('Here you can see cards for companies that often partner with content creators. Click on a card to reveal detailed contact information.', 4000)">help</a>
 <div class="row">
   <div class="col s12 m3" ng-repeat="advertiser in $ctrl.advertisers">
     <div class="card small">

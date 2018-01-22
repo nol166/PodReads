@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.string('hashed_password').notNullable().defaultTo('');
     table.string('name').notNullable().defaultTo('');
     table.string('itunes_url').notNullable().defaultTo('');
+    table.string('play_url').defaultTo('');
     table.string('website').defaultTo('');
     table.string('reader').defaultTo('');
     table.text('summary').defaultTo('');
