@@ -21,6 +21,7 @@ angular.module("podreads")
                    advertiser.tagList = advertiser.tags.split(", ")
                  }
                  // response.data.tags
+                 vm.user = user
                  vm.advertisers = response.data
                  console.log(advertisers[0].tagList)
 

@@ -9,7 +9,7 @@ angular.module("podreads")
 
 
            vm.$onInit = function() {
-             console.log('this should be the user', $window.localStorage.getItem('user'));
+             // console.log('this should be the user', $window.localStorage.getItem('user'));
              let user = JSON.parse($window.localStorage.getItem('user'));
              // console.log(user.name, "is logged in");
 
@@ -21,9 +21,10 @@ angular.module("podreads")
                    podcast.tagList = podcast.tags.split(", ")
                  }
                  // response.data.tags
+                 vm.user = user
                  vm.podcasts = response.data
-                 console.log(podcasts[0].tagList)
-
+                 console.log("this is the user object: ", user);
+                 // console.log(podcasts[0].tagList)
             })
            }
          },

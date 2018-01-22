@@ -5,7 +5,7 @@ angular.module("podreads")
       controller: function($http, $stateParams, $state, $window) {
         const vm = this
         vm.editAdvertiser = editAdvertiser
-        let advertiser = vm.advertiser
+        // let advertiser = vm.advertiser
         let currentUser = JSON.parse($window.localStorage.getItem('user'))
         console.log(currentUser);
 
@@ -21,11 +21,11 @@ angular.module("podreads")
           function editAdvertiser() {
           console.log('editAdvertiser is called');
           $http.patch(`/advertisers/${currentUser.id}`, {
-            advertiser: advertiser,
+            advertiser: vm.advertiser,
             token: $window.localStorage.getItem('token')
           })
             .then(response => {
-              console.log(data)
+              console.log('test')
               $state.go('advertisers')
             })
         }

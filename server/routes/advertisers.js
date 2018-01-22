@@ -54,7 +54,7 @@ router.patch('/:id', (req, res, next) => {
   console.log('hello', req.body);
   knex('advertisers')
     .update({
-      id: req.body.advertiser.id,
+      // id: req.body.advertiser.id,
       email: req.body.advertiser.email,
       name: req.body.advertiser.name,
       website: req.body.advertiser.website,

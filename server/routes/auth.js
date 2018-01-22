@@ -89,20 +89,20 @@ router.post('/verify', (req, res) => {
         // console.log(podcast);
         res.json({
           id: decoded.id,
-          email: podcast.email,
-          summary: podcast.summary,
-          tags: podcast.tags,
+          email: decoded.email,
+          summary: decoded.summary,
+          tags: decoded.tags,
           name: podcast.name,
-          genre: podcast.genre,
-          itunes_url: podcast.itunes_url,
-          website: podcast.website,
-          reader: podcast.reader,
-          profile_image: podcast.profile_image,
-          contact: podcast.contact,
-          subject: podcast.subject,
-          demo: podcast.demo,
+          genre: decoded.genre,
+          itunes_url: decoded.itunes_url,
+          website: decoded.website,
+          reader: decoded.reader,
+          profile_image: decoded.profile_image,
+          contact: decoded.contact,
+          subject: decoded.subject,
+          demo: decoded.demo,
           loginType: decoded.type,
-          images: podcast.images
+          images: decoded.images
         })
       })
     } else {
@@ -112,7 +112,7 @@ router.post('/verify', (req, res) => {
         res.json({
           id: decoded.id,
           email: decoded.email,
-          name: decoded.name,
+          name: advertiser.name,
           website: decoded.website,
           location: decoded.location,
           summary: decoded.summary,

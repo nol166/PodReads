@@ -30,6 +30,45 @@ exports.seed = function(knex, Promise) {
           loginType: 'advertiser'
         },
         {
+          email: 'lyft@lyft.com',
+          hashed_password: '1234',
+          name: "lyft",
+          website: "https://www.lyft.com/",
+          location: "San Fancisco, CA",
+          summary: "Lyft is an on-demand transportation company based in San Francisco, California. It develops, markets and operates the Lyft car transportation mobile app",
+          demo: 'Males and females of all ages',
+          profile_image: "https://s3.amazonaws.com/lyft-assets/gift/og-image-gift.png",
+          contact: 'https://www.lyft.com/partnerships',
+          tags: 'ride sharing, uber, lyft, transportation, ride',
+          loginType: 'advertiser'
+        },
+        {
+          email: 'for@hims.com',
+          hashed_password: '1234',
+          name: "For Hims",
+          website: "https://www.forhims.com/",
+          location: "San Fancisco, CA",
+          summary: "hims is a men’s wellness brand dedicated to empowering men to be the best version of themselves through proactivity around health and preventative self-care. With hims, men have easier and more affordable access to FDA-approved, medical-grade products across an array of categories including skin, hair loss and sexual wellness. We connect men with a staff of credible doctors to receive necessary prescriptions for preventative care, while the direct-to-consumer platform ensures products are available at 80% less than what’s currently offered over the counter or through prescription.",
+          demo: 'Males 25-55',
+          profile_image: "https://www.forhims.com/home/Hims_Home_LearnMore_01.jpg",
+          contact: 'mailto:press@forhims.com',
+          tags: 'health, hair, men, shampoo',
+          loginType: 'advertiser'
+        },
+        {
+          email: 'bolls@branch.com',
+          hashed_password: '1234',
+          name: "Bolls & Branch",
+          website: "https://www.bollandbranch.com/",
+          location: "San Fancisco, CA",
+          summary: "Boll & Branch was founded in 2014 with a simple mission: produce sheets that feel good, inside and out. After coming up empty-handed to questions about the quality and origin of an in-store bed sheet, Scott and Missy Tannen realized they were onto something; so, they began to dig. What they unearthed was an industry that needed change.",
+          demo: 'Males and females 21-55',
+          profile_image: "https://www.shescribes.com/wp-content/uploads/2014/02/Boll-and-Branch-Bedding.jpg",
+          contact: '800-678-3234',
+          tags: 'home, bed, sheets',
+          loginType: 'advertiser'
+        },
+        {
           email: 'quip@quip.com',
           hashed_password: '1234',
           name: 'Quip',

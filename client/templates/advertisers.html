@@ -4,9 +4,14 @@
 
 <navbar></navbar>
 <a class="btn #424242 grey darken-3" onclick="Materialize.toast('Here you can see cards for companies that often partner with content creators. Click on a card to reveal detailed contact information.', 4000)">help</a>
+<div><h5><center>Welcome "{{ $ctrl.user.name }}". Viewing {{ $ctrl.advertisers.length }} companies.</center></h5></div>
 <div class="row">
-  <div class="col s12 m3" ng-repeat="advertiser in $ctrl.advertisers">
-    <div class="card small">
+  <div class="input-field">
+    <input id="search" type="search" required ng-model="search">
+    <i class="material-icons">close</i>
+  </div>
+  <div class="col s12 m3" ng-repeat="advertiser in $ctrl.advertisers | filter:search | orderBy:name">
+    <div class="card small hoverable">
       <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="{{ advertiser.profile_image}}">
       </div>

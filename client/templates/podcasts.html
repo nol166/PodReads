@@ -1,9 +1,12 @@
-<script> // Materialize.toast(message, displayLength, className, completeCallback);
+<script>
+  // Materialize.toast(message, displayLength, className, completeCallback);
   Materialize.toast('I am a toast!', 4000) // 4000 is the duration of the toast
 </script>
 
 <navbar></navbar>
 <a class="btn #424242 grey darken-3" onclick="Materialize.toast('Here you can see cards for content creators that are looking for sponsors. Click on a card to reveal detailed contact information and what they are all about.', 4000)">help</a>
+<div>
+  <h5><center>Welcome "{{ $ctrl.user.name }}". Viewing {{ $ctrl.podcasts.length }} podcasts.</center></h5></div>
 <!-- <label>Search: <input ng-model="searchText"></label>
 <table id="searchTextResults">
   <tr><th>Name</th><th>Tags</th></tr>
@@ -14,8 +17,12 @@
 </table> -->
 
 <div class="row">
-  <div class="col s12 m3" ng-repeat="podcast in $ctrl.podcasts">
-    <div class="card large">
+  <div class="input-field">
+    <input id="search" type="search" required ng-model="search">
+    <i class="material-icons">close</i>
+  </div>
+  <div class="col s12 m3" ng-repeat="podcast in $ctrl.podcasts | filter:search | orderBy:name">
+    <div class="card large hoverable">
       <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="{{ podcast.profile_image}}">
       </div>
@@ -38,7 +45,7 @@
         </div>
         <p><a href="{{ podcast.website}}">website</a></p>
         <p>{{ podcast.summary }}</p>
-        <iframe style="border: solid 1px #dedede;"  src="https://app.stitcher.com/splayer/f/160940/52945549" width="220" height="150" frameborder="0" scrolling="no"></iframe>
+        <iframe style="border: solid 1px #dedede;" src="https://app.stitcher.com/splayer/f/160940/52945549" width="220" height="150" frameborder="0" scrolling="no"></iframe>
         <p><b>Contact: </b><i>{{ podcast.contact }}</i></p>
       </div>
     </div>
