@@ -9,4 +9,5 @@ Advertisers can post information about their company while podcasters can share 
 ### Technologies used ###
 Node, Express, Knex, AngularJS, Materialize CSS, PostgreSQL, Bcrypt, JSON Web Tokens, Stitcher, iTunes, Google Play.
 
+### Video walkthrough ###
 [![PodReads](http://img.youtube.com/vi/F6UYz5QIQe8/0.jpg)](https://youtu.be/F6UYz5QIQe8)
