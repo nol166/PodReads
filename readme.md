@@ -1,6 +1,7 @@
 # PodReads#
 
-![PodReads logo](https://media.giphy.com/media/l49K1zyGprNfFs6GI/giphy.gif" Logo Title Text 1")
+![alt text](https://media.giphy.com/media/l49K1zyGprNfFs6GI/giphy.gif "Logo Title Text 1")
+
 
 
 ### What problem does it solve? ###
