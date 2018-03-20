@@ -1,4 +1,4 @@
-# PodReads#
+# PodReads
 
 ![alt text](https://media.giphy.com/media/l49K1zyGprNfFs6GI/giphy.gif "PodReads Logo")
 
